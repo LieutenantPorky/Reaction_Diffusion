@@ -1,0 +1,96 @@
+Base path: '/home/jacopo/Unity/2019.3.0a4/Editor/Data', plugins path '/home/jacopo/Unity/2019.3.0a4/Editor/Data/PlaybackEngines'
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=560 outsize=559 ok=1
+Cmd: preprocessCompute
+  insize=616 outsize=615 ok=1
+Cmd: preprocessCompute
+  insize=625 outsize=624 ok=1
+Cmd: preprocessCompute
+  insize=630 outsize=629 ok=1
+Cmd: preprocessCompute
+  insize=629 outsize=628 ok=1
+Cmd: preprocessCompute
+  insize=615 outsize=614 ok=1
+Cmd: preprocessCompute
+  insize=659 outsize=658 ok=1
+Cmd: preprocessCompute
+  insize=658 outsize=657 ok=1
+Cmd: preprocessCompute
+  insize=671 outsize=670 ok=1
+Cmd: preprocessCompute
+  insize=659 outsize=658 ok=1
+Cmd: preprocessCompute
+  insize=659 outsize=658 ok=1
+Cmd: preprocessCompute
+  insize=570 outsize=569 ok=1
+Cmd: preprocessCompute
+  insize=571 outsize=570 ok=1
+Cmd: preprocessCompute
+  insize=623 outsize=622 ok=1
+Cmd: preprocessCompute
+  insize=631 outsize=630 ok=1
+Cmd: preprocessCompute
+  insize=631 outsize=630 ok=1
+Cmd: preprocessCompute
+  insize=557 outsize=556 ok=1
+Cmd: preprocessCompute
+  insize=559 outsize=558 ok=1
+Cmd: preprocessCompute
+  insize=666 outsize=665 ok=1
+Cmd: preprocessCompute
+  insize=655 outsize=654 ok=1
+Cmd: preprocessCompute
+  insize=655 outsize=654 ok=1
+Cmd: preprocessCompute
+  insize=655 outsize=654 ok=1
+Cmd: preprocessCompute
+  insize=621 outsize=620 ok=1
+Cmd: preprocessCompute
+  insize=633 outsize=632 ok=1
+Cmd: preprocessCompute
+  insize=641 outsize=640 ok=1
+Cmd: preprocessCompute
+  insize=674 outsize=673 ok=1
+Cmd: preprocessCompute
+  insize=674 outsize=673 ok=1
+Cmd: preprocessCompute
+  insize=727 outsize=726 ok=1
+Cmd: preprocessCompute
+  insize=801 outsize=800 ok=1
+Cmd: preprocessCompute
+  insize=821 outsize=820 ok=1
+Cmd: preprocessCompute
+  insize=820 outsize=819 ok=1
+Cmd: preprocessCompute
+  insize=821 outsize=820 ok=1
+Cmd: preprocessCompute
+  insize=1158 outsize=1157 ok=1
+Cmd: preprocessCompute
+  insize=1156 outsize=1155 ok=1
+Cmd: preprocessCompute
+  insize=1137 outsize=1136 ok=1
+Cmd: preprocessCompute
+  insize=1137 outsize=1136 ok=1
+Cmd: preprocessCompute
+  insize=1158 outsize=1157 ok=1
+Cmd: preprocessCompute
+  insize=1131 outsize=1130 ok=1
+Cmd: preprocessCompute
+  insize=1131 outsize=1130 ok=1
+Cmd: preprocess
+  insize=1413 outsize=293 ok=1
+Cmd: compileSnippet
+  api=15 type=0 insize=1558 outsize=2096 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileSnippet
+  api=15 type=1 insize=1558 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: preprocess
+  insize=1413 outsize=293 ok=1
+Cmd: preprocess
+  insize=1413 outsize=293 ok=1
+Cmd: preprocess
+  insize=1448 outsize=293 ok=1
+Cmd: compileSnippet
+  error: 2 plat 15 at (0): Did not find shader kernel 'geom' to compile\nCompiling Vertex program
+Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
+  api=15 type=0 insize=1593 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=0

@@ -1,0 +1,73 @@
+Base path: '/home/jacopo/Unity/2019.3.0a4/Editor/Data', plugins path '/home/jacopo/Unity/2019.3.0a4/Editor/Data/PlaybackEngines'
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 2 plat 15 at ComputeShader.compute(23): undeclared identifier 'totalSize'
+  api=15 insize=881 outsize=0 ok=0
+Cmd: compileComputeKernel
+  api=15 insize=884 outsize=2275 ok=1
+Cmd: compileComputeKernel
+  api=15 insize=872 outsize=2161 ok=1
+Cmd: compileComputeKernel
+  api=18 insize=906 outsize=3013 ok=1
+Cmd: compileComputeKernel
+  api=18 insize=908 outsize=3013 ok=1
+Cmd: compileComputeKernel
+  api=18 insize=955 outsize=2588 ok=1
+Cmd: compileComputeKernel
+  api=18 insize=902 outsize=2588 ok=1
+Cmd: compileComputeKernel
+  api=15 insize=915 outsize=2076 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 15 at ComputeShader.compute(33): incorrect number of arguments to numeric-type constructor
+  api=15 insize=930 outsize=0 ok=0
+Cmd: compileComputeKernel
+  api=15 insize=940 outsize=2109 ok=1
+Cmd: compileComputeKernel
+  api=15 insize=940 outsize=2117 ok=1
+Cmd: compileComputeKernel
+  api=15 insize=940 outsize=2109 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 15 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=15 insize=1618 outsize=4619 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 15 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=15 insize=1617 outsize=4615 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 18 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=18 insize=1614 outsize=7266 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 18 at ComputeShader.compute(56): syntax error: unexpected token ')'
+  error: 2 plat 18 at ComputeShader.compute(57): syntax error: unexpected token ';'
+  api=18 insize=1713 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 2 plat 15 at ComputeShader.compute(57): syntax error: unexpected token ';'
+  api=15 insize=1712 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 1 plat 15 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=15 insize=1713 outsize=4786 ok=1
+Cmd: compileComputeKernel
+  api=18 insize=1795 outsize=3458 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 18 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=18 insize=1722 outsize=7670 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 15 at ComputeShader.compute(76): undeclared identifier 'uvv'
+  api=15 insize=2153 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 1 plat 15 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=15 insize=2157 outsize=5648 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 18 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=18 insize=2158 outsize=9486 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 15 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=15 insize=2158 outsize=5656 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 15 at ComputeShader.compute(75): l-value specifies const object
+  api=15 insize=2186 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 2 plat 15 at ComputeShader.compute(75): undeclared identifier 'F'
+  api=15 insize=2188 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 1 plat 18 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=18 insize=2242 outsize=9930 ok=1

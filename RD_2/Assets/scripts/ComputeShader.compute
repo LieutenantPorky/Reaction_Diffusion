@@ -1,0 +1,87 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel Reaction_Diffusion
+
+#define groupNum 5
+#define groupSize 10
+#define dt 0.2
+
+// reaction values
+
+#define diffU 0.25
+#define diffV 0.05
+
+#define sF 0.1
+#define K 0.05
+
+
+// Create Struct to hold data
+
+struct meshData {
+  float3 pos;
+  float4 color;
+};
+
+struct voxelState {
+  float u;
+  float v;
+};
+
+RWStructuredBuffer<meshData> positions;
+RWStructuredBuffer<voxelState> states;
+
+int getAbsoluteIndex(int3 id, int totalSize) {
+  return id.x + id.y * totalSize + id.z * totalSize * totalSize;
+}
+
+[numthreads(groupSize, groupSize, groupSize)]
+
+void Reaction_Diffusion (uint3 id : SV_DispatchThreadID)
+{
+  // Obtain the scalar index to access the buffer
+  int totalSize = groupNum * groupSize;
+  int index = getAbsoluteIndex(id, totalSize);
+
+  // Define the laplacian convolution tensor
+  float laplacianKernel[3][3][3] = {
+    {{0.125,0.25,0.125},
+     {0.25, 0.5, 0.25 },
+     {0.125,0.25,0.125}},
+
+    {{0.25 ,0.5,0.25 },
+     {0.50 ,-7.0,0.5 },
+     {0.25 ,0.5,0.25 }},
+
+   {{0.125,0.25,0.125},
+    {0.25, 0.5, 0.25 },
+    {0.125,0.25,0.125}}
+  };
+
+  // Calculate laplacian
+  float2 laplacian = float2(0.0,0.0);
+
+  for (int i = 0; i<3; i++) {
+    for (int j = 0; j<3; j++) {
+      for (int k = 0; k<3; k++) {
+        int arrayID = clamp(getAbsoluteIndex(id + uint3(i,j,k) - uint3(1,1,1), totalSize),0, totalSize * totalSize * totalSize - 1);
+        float2 posValue = float2(states[arrayID].u, states[arrayID].v);
+        laplacian += posValue * laplacianKernel[i][j][k];
+      }
+    }
+  }
+  // Calculate differentials based on Gray-Scott model
+  float u = states[index].u;
+  float v = states[index].v;
+
+  float F = sF + sin(frac(dot((float3)id, float3(145.3,1467.23,7634.53)))) * 0.05; // add some noise
+
+  float du = diffU * laplacian.r - u*v*v + F * (1.0 - u);
+  float dv = diffV * laplacian.g + u*v*v - (F + K) * v;
+
+  // update concentrations
+
+  states[index].u += du * dt;
+  states[index].v += dv * dt;
+
+  positions[index].pos = 0.2 * float3((float)id.x, (float)id.y, (float)id.z) - float3(5.0,5.0,5.0);
+  positions[index].color = float4(clamp(float2(u,v),0.0,1.0), 0.0, 1.0);
+}

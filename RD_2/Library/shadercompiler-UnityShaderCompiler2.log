@@ -1,0 +1,7 @@
+Base path: '/home/jacopo/Unity/2019.3.0a4/Editor/Data', plugins path '/home/jacopo/Unity/2019.3.0a4/Editor/Data/PlaybackEngines'
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 1 plat 18 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=18 insize=2261 outsize=9930 ok=1
+
+Quitting shader compiler process
