@@ -70,11 +70,10 @@ public class ComputeShader_Call : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+      dispatchKernel();
     }
 
     void OnRenderObject() {
-      dispatchKernel();
       pointMaterial.SetPass(0);
       Graphics.DrawProceduralNow(MeshTopology.Points, totalPoints);
     }
