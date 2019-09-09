@@ -1,4 +1,4 @@
-Shader "Billboard geometry" {
+Shader "Billboard geometry noclip" {
     SubShader {
       Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
       ZWrite Off
@@ -49,7 +49,7 @@ Shader "Billboard geometry" {
             // Trasform to camera space
 
             float3 pos = points[id].pos;
-            output.pos = UnityObjectToClipPos(pos);
+            output.pos = float4(pos,1);
             output.col = points[id].color;
             return output;
         }
@@ -58,22 +58,27 @@ Shader "Billboard geometry" {
         void geom(point gs_in input[1], inout TriangleStream<ps_in> triStream){
             ps_in output = (ps_in)0;
 
-            float sizeMul = 3.0;
+            float sizeMul = 0.5;
 
             //output quad
             output.col =  input[0].col;
             output.col.a = output.col.g;
 
-            output.pos = input[0].pos;
+            float4 r = input[0].pos - float4(_WorldSpaceCameraPos, 0);
+            float3 w = normalize(float3(r.z,0,-1.0 * r.x));
+            float3 h = normalize(cross(w,r.xyz));
+            float3 start = input[0].pos - (w+h) * input[0].col.g * sizeMul * 0.5;
+
+            output.pos = UnityObjectToClipPos(start);
             triStream.Append(output);
 
-            output.pos = input[0].pos + float4(0,0.3,0,0) * input[0].col.g * sizeMul;
+            output.pos = UnityObjectToClipPos(start + w * input[0].col.g * sizeMul);
             triStream.Append(output);
 
-            output.pos = input[0].pos + float4(0.1,0,0,0) * input[0].col.g * sizeMul;
+            output.pos = UnityObjectToClipPos(start + h * input[0].col.g * sizeMul);
             triStream.Append(output);
 
-            output.pos = input[0].pos + float4(0.1,0.3,0,0) * input[0].col.g * sizeMul;
+            output.pos = UnityObjectToClipPos(start + (w + h) * input[0].col.g * sizeMul);
             triStream.Append(output);
 
             triStream.RestartStrip();
