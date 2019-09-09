@@ -1,5 +1,8 @@
 Shader "Billboard geometry" {
     SubShader {
+      Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
+      ZWrite Off
+      Blend SrcAlpha OneMinusSrcAlpha
 
     Pass{
 
@@ -54,19 +57,22 @@ Shader "Billboard geometry" {
         void geom(point gs_in input[1], inout TriangleStream<ps_in> triStream){
             ps_in output = (ps_in)0;
 
+            float sizeMul = 3.0;
+
             //output quad
             output.col =  input[0].col;
+            output.col.a = output.col.g;
 
             output.pos = input[0].pos;
             triStream.Append(output);
 
-            output.pos = input[0].pos + float4(0,0.1,0,0);
+            output.pos = input[0].pos + float4(0,0.3,0,0) * input[0].col.g * sizeMul;
             triStream.Append(output);
 
-            output.pos = input[0].pos + float4(0.1,0,0,0);
+            output.pos = input[0].pos + float4(0.1,0,0,0) * input[0].col.g * sizeMul;
             triStream.Append(output);
 
-            output.pos = input[0].pos + float4(0.1,0.1,0,0);
+            output.pos = input[0].pos + float4(0.1,0.3,0,0) * input[0].col.g * sizeMul;
             triStream.Append(output);
 
             triStream.RestartStrip();
@@ -75,7 +81,7 @@ Shader "Billboard geometry" {
 
         fixed4 frag (ps_in i ) : COLOR0 {
           fixed4 col = i.col;
-          if (col.g < 0.5) discard;
+          if (col.g < 0.1) discard;
           return col;
         }
 
