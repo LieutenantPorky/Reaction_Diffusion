@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This is what the data in the voxelField buffer looks like
 struct concentrationData {
   public float u;
   public float v;
@@ -10,10 +11,11 @@ struct concentrationData {
 
 public class ComputeShader_Call : MonoBehaviour
 {
-    public Shader pointShader;
-    private Material pointMaterial;
+    // User-editable references to the compute shader and material with rendering shader
+    public Material pointMaterial;
     public ComputeShader computeShader;
 
+    // Declare the buffers for the GPU, and figure out how big their elements are
     private ComputeBuffer voxelField;
     private ComputeBuffer positions;
     int bufferSizeVox = 2 * 4; // float2
@@ -24,10 +26,11 @@ public class ComputeShader_Call : MonoBehaviour
     static int totalSize = groupNum * groupSize;
     static int totalPoints = totalSize * totalSize * totalSize;
 
-
+    // The function in the compute shader that we want to call has a specific kernel ID - store it here
     private int kernel;
 
     void initBuffer() {
+      // Figure out what the kernel ID is for the compute function we want to call
       kernel = computeShader.FindKernel("Reaction_Diffusion");
       voxelField = new ComputeBuffer(totalPoints ,bufferSizeVox);
       positions = new ComputeBuffer(totalPoints, bufferSizePos);
@@ -61,7 +64,6 @@ public class ComputeShader_Call : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      pointMaterial = new Material(pointShader);
       initBuffer();
       updateConcentrations();
       pointMaterial.SetBuffer("points", positions);
