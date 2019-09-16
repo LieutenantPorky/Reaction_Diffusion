@@ -1,17 +1,18 @@
 ﻿// Each #kernel tells which function to compile; you can have many kernels
 #pragma kernel Reaction_Diffusion
 
+
 #define groupNum 5
 #define groupSize 10
-#define dt 0.2
+#define dt 0.1
 
 // reaction values
 
-#define diffU 0.25
-#define diffV 0.05
+#define diffU 0.5
+#define diffV 0.3
 
-#define sF 0.1
-#define K 0.05
+#define sF 0.025
+#define K 0.06
 
 
 // Create Struct to hold data
@@ -43,17 +44,17 @@ void Reaction_Diffusion (uint3 id : SV_DispatchThreadID)
 
   // Define the laplacian convolution tensor
   float laplacianKernel[3][3][3] = {
-    {{0.125,0.25,0.125},
-     {0.25, 0.5, 0.25 },
-     {0.125,0.25,0.125}},
+    {{1,1,1},
+     {1,1,1},
+     {1,1,1}},
 
-    {{0.25 ,0.5,0.25 },
-     {0.50 ,-7.0,0.5 },
-     {0.25 ,0.5,0.25 }},
+    {{1,1,1},
+     {1,-26,1},
+     {1,1,1}},
 
-   {{0.125,0.25,0.125},
-    {0.25, 0.5, 0.25 },
-    {0.125,0.25,0.125}}
+     {{1,1,1},
+      {1,1,1},
+      {1,1,1}},
   };
 
   // Calculate laplacian
@@ -64,7 +65,7 @@ void Reaction_Diffusion (uint3 id : SV_DispatchThreadID)
       for (int k = 0; k<3; k++) {
         int arrayID = clamp(getAbsoluteIndex(id + uint3(i,j,k) - uint3(1,1,1), totalSize),0, totalSize * totalSize * totalSize - 1);
         float2 posValue = float2(states[arrayID].u, states[arrayID].v);
-        laplacian += posValue * laplacianKernel[i][j][k];
+        laplacian += posValue * laplacianKernel[i][j][k] / 26;
       }
     }
   }
@@ -72,10 +73,10 @@ void Reaction_Diffusion (uint3 id : SV_DispatchThreadID)
   float u = states[index].u;
   float v = states[index].v;
 
-  float F = sF + sin(frac(dot((float3)id, float3(145.3,1467.23,7634.53)))) * 0.05; // add some noise
+  float F = sF;
 
-  float du = diffU * laplacian.r - u*v*v + F * (1.0 - u);
-  float dv = diffV * laplacian.g + u*v*v - (F + K) * v;
+  float du = diffU * laplacian.r * (1 + sin(frac(dot((float3)id, float3(1475.3,1467.23,7634.53)))) * 0.5) - u*v*v + F * (1.0 - u); // add some noise;
+  float dv = diffV * laplacian.g * (1 + sin(frac(dot((float3)id, float3(5463.35,4613.56,2569.63)))) * 0.5) + u*v*v - (F + K) * v;
 
   // update concentrations
 
@@ -83,5 +84,5 @@ void Reaction_Diffusion (uint3 id : SV_DispatchThreadID)
   states[index].v += dv * dt;
 
   positions[index].pos = 0.2 * float3((float)id.x, (float)id.y, (float)id.z) - float3(5.0,5.0,5.0);
-  positions[index].color = float4(clamp(float2(u,v),0.0,1.0), 0.0, 1.0);
+  positions[index].color = float4(v,u, 0.0, 1.0);
 }

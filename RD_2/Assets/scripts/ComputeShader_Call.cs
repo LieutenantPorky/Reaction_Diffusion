@@ -51,11 +51,18 @@ public class ComputeShader_Call : MonoBehaviour
 
     void updateConcentrations() {
       concentrationData[,,] concentrations = new concentrationData[totalSize, totalSize, totalSize];
-      for (int i = 22; i<28; i++) {
-        for (int j = 22; j<28; j++) {
-          for (int k = 22; k<28; k++) {
+      for (int i = 0; i<totalSize; i++) {
+        for (int j = 0; j<totalSize; j++) {
+          for (int k = 0; k<totalSize; k++) {
             concentrations[i,j,k].u = 1.0f;
-            concentrations[i,j,k].v = 0.5f;
+            concentrations[i,j,k].v = 0.0f;
+          }
+        }
+      }
+      for (int i = totalSize/2 - 5; i<totalSize/2 + 5; i++) {
+        for (int j = totalSize/2 - 5; j<totalSize/2 + 5; j++) {
+          for (int k = totalSize/2 - 5; k<totalSize/2 + 5; k++) {
+            concentrations[i,j,k].v = 1.0f;
           }
         }
       }
