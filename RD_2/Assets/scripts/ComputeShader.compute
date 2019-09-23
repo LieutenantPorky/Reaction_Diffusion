@@ -36,6 +36,8 @@ int getAbsoluteIndex(int3 id, int totalSize) {
   return id.x + id.y * totalSize + id.z * totalSize * totalSize;
 }
 
+// 1 and 3 dimensional noise algorithms
+
 float random (float x) {
     return frac(sin(x)*43758.5453123);
 }
@@ -87,12 +89,12 @@ void Reaction_Diffusion (uint3 id : SV_DispatchThreadID)
   float u = states[index].u;
   float v = states[index].v;
 
-  // Add a constant source at the center
+  // Add smooth noise to the reaction constants
   float rT = random(globalTime);
-  float srcTexColor = smoothstep(.999+rT*0.0001,1.,1.)*random((float3)id)*rT;
+  float noise = smoothstep(.999+rT*0.0001,1.,1.)*random((float3)id)*rT;
 
-  float F  = f + srcTexColor * 0.025 - 0.0005;
-  float K  = sK + srcTexColor * 0.025 - 0.0005;
+  float F  = f + noise * 0.025 - 0.0005;
+  float K  = sK + noise * 0.025 - 0.0005;
 
 
 
@@ -104,6 +106,8 @@ void Reaction_Diffusion (uint3 id : SV_DispatchThreadID)
 
   states[index].u += du * dt;
   states[index].v += dv * dt;
+
+  // Write to output buffer for the actual shader
 
   positions[index].pos = 0.2 * float3((float)id.x, (float)id.y, (float)id.z) - float3(5.0,5.0,5.0);
   positions[index].color = float4(clamp(float2(u,v),0.0,1.0), 0.0, 1.0);
