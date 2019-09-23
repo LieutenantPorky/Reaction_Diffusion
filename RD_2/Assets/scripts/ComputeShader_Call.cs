@@ -42,6 +42,7 @@ public class ComputeShader_Call : MonoBehaviour
 
     void dispatchKernel() {
       computeShader.Dispatch(kernel, groupNum, groupNum, groupNum);
+      computeShader.SetFloat("globalTime", Time.fixedTime);
     }
 
     void end() {

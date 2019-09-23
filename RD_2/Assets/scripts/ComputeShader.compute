@@ -3,15 +3,15 @@
 
 #define groupNum 5
 #define groupSize 10
-#define dt 0.2
+#define dt 0.6
 
 // reaction values
 
 #define diffU 0.25
 #define diffV 0.05
 
-#define sF 0.1
-#define K 0.05
+#define f 0.1
+#define sK 0.063
 
 
 // Create Struct to hold data
@@ -28,10 +28,24 @@ struct voxelState {
 
 RWStructuredBuffer<meshData> positions;
 RWStructuredBuffer<voxelState> states;
+float globalTime;
+
+// Transform from a vec3 index to scalar index (to access proper position in the buffer)
 
 int getAbsoluteIndex(int3 id, int totalSize) {
   return id.x + id.y * totalSize + id.z * totalSize * totalSize;
 }
+
+float random (float x) {
+    return frac(sin(x)*43758.5453123);
+}
+
+float random (float3 st) {
+    return frac(sin(dot(st, float3(12.9898,78.233,42.453)))*43758.5453123);
+}
+
+
+
 
 [numthreads(groupSize, groupSize, groupSize)]
 
@@ -68,14 +82,23 @@ void Reaction_Diffusion (uint3 id : SV_DispatchThreadID)
       }
     }
   }
+
   // Calculate differentials based on Gray-Scott model
   float u = states[index].u;
   float v = states[index].v;
 
-  float F = sF + sin(frac(dot((float3)id, float3(145.3,1467.23,7634.53)))) * 0.05; // add some noise
+  // Add a constant source at the center
+  float rT = random(globalTime);
+  float srcTexColor = smoothstep(.999+rT*0.0001,1.,1.)*random((float3)id)*rT;
+
+  float F  = f + srcTexColor * 0.025 - 0.0005;
+  float K  = sK + srcTexColor * 0.025 - 0.0005;
+
+
 
   float du = diffU * laplacian.r - u*v*v + F * (1.0 - u);
   float dv = diffV * laplacian.g + u*v*v - (F + K) * v;
+
 
   // update concentrations
 

@@ -1,3 +1,22 @@
 Base path: '/home/jacopo/Unity/2019.3.0a4/Editor/Data', plugins path '/home/jacopo/Unity/2019.3.0a4/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
-Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 2 plat 18 at ComputeShader.compute(39): undeclared identifier 'fract'
+  api=18 insize=2543 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 1 plat 18 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=18 insize=2541 outsize=9930 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 15 at ComputeShader.compute(77): l-value specifies const object
+  error: 2 plat 15 at ComputeShader.compute(77): syntax error: unexpected float constant
+  api=15 insize=2708 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 2 plat 18 at ComputeShader.compute(78): l-value specifies const object
+  error: 2 plat 18 at ComputeShader.compute(78): syntax error: unexpected float constant
+  api=18 insize=2727 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 1 plat 18 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=18 insize=2731 outsize=12704 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 15 at (0): Program 'Reaction_Diffusion', warning X4714: sum of temp registers and indexable temp registers times 1000 threads exceeds the recommended total 16384.  Performance may be reduced
+  api=15 insize=2720 outsize=6277 ok=1
