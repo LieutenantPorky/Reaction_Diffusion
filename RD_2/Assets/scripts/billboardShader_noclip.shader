@@ -69,11 +69,11 @@ Shader "Billboard geometry noclip" {
         void geom(point gs_in input[1], inout TriangleStream<ps_in> triStream){
             ps_in output = (ps_in)0;
 
+            float sizeMul = _Scale;
 
             //output quad
             output.col =  input[0].col;
-            output.col.a = output.col.r;
-            float sizeMul = _Scale * (1 + output.col.r);
+            output.col.a = output.col.g;
 
             float4 r = input[0].pos - float4(_WorldSpaceCameraPos, 0);
             float3 w = normalize(float3(r.z,0,-1.0 * r.x));
@@ -102,9 +102,9 @@ Shader "Billboard geometry noclip" {
 
         fixed4 frag (ps_in i ) : COLOR0 {
           fixed4 col = i.col;
-          if (col.r < 0.1) discard;
+          if (col.g < 0.01) discard;
           fixed4 tex = tex2D(_MainTex, i.tex);
-          return fixed4(0.8 * tex.rgb * clamp(1.5 - col.r, 1.0, 1.5), tex.a * pow(col.a,3));
+          return fixed4(0.8 * tex.rgb * clamp(1.5 - col.g, 1.0, 1.5), tex.a * col.a);
         }
 
         ENDCG
