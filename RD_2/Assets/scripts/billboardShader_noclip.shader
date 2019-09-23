@@ -103,8 +103,11 @@ Shader "Billboard geometry noclip" {
         fixed4 frag (ps_in i ) : COLOR0 {
           fixed4 col = i.col;
           if (col.g < 0.01) discard;
-          fixed4 tex = tex2D(_MainTex, i.tex);
-          return fixed4(0.8 * tex.rgb * clamp(1.5 - col.g, 1.0, 1.5), tex.a * col.a);
+          float distSqd = dot(i.tex - float2(0.5, 0.5),i.tex - float2(0.5, 0.5));
+          if (distSqd > 0.25) discard;
+          //fixed4 tex = tex2D(_MainTex, i.tex);
+          fixed4 tex = fixed4(0,0.5,0.5,(0.25 - distSqd)/0.25);
+          return fixed4(tex.rgb * clamp(1.5 - col.g * col.g, 1.0, 1.5), tex.a * col.a);
         }
 
         ENDCG
